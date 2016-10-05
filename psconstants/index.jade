@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title Photoshop AM Constants
+
+    link(href='https://fonts.googleapis.com/css?family=Roboto:400,700', rel='stylesheet')
+    link(href='/css/vendor/pure-min.css', rel='stylesheet')
+    link(href='/css/styles.css', rel='stylesheet')
+
+  body
+    #app
+      h1 Photoshop AM Constants
+      .description
+        :markdown
+          List of Photoshop constants used in AM-coding. Data from [pcpix.com](https://web.archive.org/web/20150624160853/http://www.pcpix.com/Photoshop/enum.htm) (Web Archive version, original source is not available) 
+
+      input(class='search', placeholder='Search', v-model='searchQuery')
+      
+      table(class='pure-table')
+        thead
+          tr
+            //-th Constant
+            th TypeID
+            th CharID
+            th StringID
+        
+        tbody
+          tr(v-for='constant in constants | filterBy searchQuery' v-cloak)
+            //-td {{constant.PSConstant}}
+            td {{constant.value}}
+            td {{constant.charID}}
+            td {{constant.TypeIDToStringID}}
+
+    script(src='/js/vendor/vue.min.js')
+    script(src='/js/data.js')
+    script(src='/js/app.js')
