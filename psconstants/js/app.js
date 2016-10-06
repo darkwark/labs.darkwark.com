@@ -1,8 +1,11 @@
 var vm = new Vue({
   el: '#app',
   data: {
-    constants: constants
+    constants: constants,
+    current: 30
   },
   computed: {},
-  methods: {}
+  methods: {
+
+  }
 });

@@ -16,19 +16,22 @@
       <table class="pure-table">
         <thead>
           <tr>
-            <th>TypeID</th>
-            <th>CharID</th>
-            <th>StringID</th>
+            <th>kind</th>
+            <th>stringID</th>
+            <th>typeID</th>
+            <th>charID</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="constant in constants | filterBy searchQuery" v-cloak>
-            <td>{{constant.value}}</td>
-            <td>{{constant.charID}}</td>
-            <td>{{constant.TypeIDToStringID}}</td>
+          <tr v-for="constant in constants | filterBy searchQuery | limitBy current" v-cloak>
+            <td>{{constant.kind}}</td>
+            <td>{{constant.stringID}}</td>
+            <td>{{constant.typeID}}</td>
+            <td>"{{constant.charID}}"</td>
           </tr>
         </tbody>
       </table>
+      <button @click="current += 30">Load more</button>
     </div>
     <script src="./js/vendor/vue.min.js"></script>
     <script src="./js/data.js"></script>

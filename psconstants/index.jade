@@ -5,8 +5,8 @@ html
     title Photoshop AM Constants
 
     link(href='https://fonts.googleapis.com/css?family=Roboto:400,700', rel='stylesheet')
-    link(href='/css/vendor/pure-min.css', rel='stylesheet')
-    link(href='/css/styles.css', rel='stylesheet')
+    link(href='./css/vendor/pure-min.css', rel='stylesheet')
+    link(href='./css/styles.css', rel='stylesheet')
 
   body
     #app
@@ -20,18 +20,22 @@ html
       table(class='pure-table')
         thead
           tr
-            //-th Constant
-            th TypeID
-            th CharID
-            th StringID
+            th kind
+            th stringID
+            th typeID
+            th charID
+            //- th Comment
         
         tbody
-          tr(v-for='constant in constants | filterBy searchQuery' v-cloak)
-            //-td {{constant.PSConstant}}
-            td {{constant.value}}
-            td {{constant.charID}}
-            td {{constant.TypeIDToStringID}}
-
-    script(src='/js/vendor/vue.min.js')
-    script(src='/js/data.js')
-    script(src='/js/app.js')
+          tr(v-for='constant in constants | filterBy searchQuery | limitBy current' v-cloak)
+            td {{constant.kind}}
+            td {{constant.stringID}}
+            td {{constant.typeID}}
+            td "{{constant.charID}}"
+            //- td {{constant.comment}}
+      
+      button(@click='current += 30') Load more
+    
+    script(src='./js/vendor/vue.min.js')
+    script(src='./js/data.js')
+    script(src='./js/app.js')
